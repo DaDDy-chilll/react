@@ -7,12 +7,17 @@ import SearchBox from "./components/search-box/search-box.component";
 
 const App = () => {
   const [serchString, setSearchString] = useState("");
+  const [title, setTitle] = useState("");
   const [monster, setMonster] = useState([]);
   const [filterMonsters, setFilterMonsters] = useState(monster);
 
   const onSearchChange = (event) => {
     const serchFieldString = event.target.value.toLowerCase();
     setSearchString(serchFieldString);
+  };
+  const onTitleChange = (event) => {
+    const serchFieldString = event.target.value.toLowerCase();
+    setTitle(serchFieldString);
   };
 
   useEffect(() => {
@@ -30,11 +35,17 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1 className="app-title">Monsters Rolodex</h1>
+      <h1 className="app-title">{title}</h1>
       <SearchBox
         onChangeHandler={onSearchChange}
         placeholder="Enter monster"
         className="search-box"
+      />
+      <br />
+      <SearchBox
+        onChangeHandler={onTitleChange}
+        placeholder="set title"
+        className="title-search-box"
       />
       <ClardList monsters={filterMonsters} />
     </div>
